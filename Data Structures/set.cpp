@@ -1,5 +1,5 @@
 // A binary search tree implementation. 
-// O(logN) search
+// O(logN) average search time, but the worst is O(N) as the tree is not balanced
 struct node {
    int v;   // value
    node* l; // left child / subtree
