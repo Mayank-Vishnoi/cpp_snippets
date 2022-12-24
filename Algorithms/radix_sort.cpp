@@ -1,7 +1,7 @@
 void countingSort (int* a, int n, int place) {
    const int max = 10;
    int output[n];
-   int count[max];
+   int count[max]; // auxilary O(n) space
  
    for (int i = 0; i < max; ++i)
       count[i] = 0;
@@ -11,7 +11,9 @@ void countingSort (int* a, int n, int place) {
  
    for (int i = 1; i < max; i++)
       count[i] += count[i - 1];
- 
+   
+   // right to left for stable sorting
+   // if two elements have same digits at current place value then they should maintain order as they appear originally before sorting them according to this digit place value only.
    for (int i = n - 1; i >= 0; i--) {
       output[count[(a[i] / place) % 10] - 1] = a[i];
       count[(a[i] / place) % 10]--;
@@ -21,6 +23,7 @@ void countingSort (int* a, int n, int place) {
       a[i] = output[i];
 }
 
+//  Do digit by digit sort starting from least significant digit to most significant digit.
 void radix_sort (int* a, int n) {
    int mx = -1;
    for (int i = 0; i < n; i++) {
