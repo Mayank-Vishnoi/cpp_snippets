@@ -34,4 +34,7 @@ void radix_sort (int* a, int n) {
 }
 
 // There are more sorts, just knowing a little about them would give you the idea.
+
 // Bucket sort - divides the unsorted array elements into several groups called buckets. Each bucket is then sorted by using any of the suitable sorting algorithms or recursively applying the same bucket algorithm.
+
+// Heap Sort - Given an array of data, first, we build a heap and then turn it into a sorted list by calling deleteMin. The running time of the algorithm is O(n log n).
