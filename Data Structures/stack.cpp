@@ -115,23 +115,3 @@ struct stack {
       return (cur_size == 0);
    }
 };
-
-
-// A modification
-struct minstack {
-   stack<pair<int, int>> st; // the element itself and the minimum in the stack starting from this element and below.
-   
-   void add (int new_elem) {
-      int new_min = st.empty() ? new_elem : min(new_elem, st.top().second);
-      st.push({new_elem, new_min});
-   }
-
-   void remove () {
-      int removed_element = st.top().first;
-      st.pop();
-   }
-
-   int minimum () {
-      return st.top().second;
-   }
-};
