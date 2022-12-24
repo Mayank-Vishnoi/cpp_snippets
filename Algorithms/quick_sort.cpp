@@ -17,6 +17,7 @@ int arrange (int *a, int l, int r) {
       if (sp == -1 && a[i] >= a[r]) {
          sp = i;
       }
+      // make space for all smaller elements than our pivot, a[r] and swap at last
       if (a[i] < a[r] && sp != -1) {
          swap(a[sp], a[i]);
          sp++;
