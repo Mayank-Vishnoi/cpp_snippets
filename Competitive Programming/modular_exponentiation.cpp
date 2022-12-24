@@ -1,15 +1,18 @@
-ll binpow (ll x, ll n, ll m) {
-   x %= m;  
-   ll res = 1;
+using ll = long long;
+const int mod = 1e9 + 7;
+
+int binpow (int x, int n) {
+   x %= mod;  
+   int res = 1;
    while (n > 0) {
       if (n % 2 == 1)  
-         res = res * x % m;
-      x = x * x % m;
+         res = ((ll)res * x) % mod;
+      x = ((ll)x * x) % mod;
       n /= 2;  
    }
    return res;
 }
 
-ll inv(ll x, ll m) {
-   return binpow(x, m - 2, m);
+int inv (int x) {
+   return binpow(x, mod - 2, mod);
 }
