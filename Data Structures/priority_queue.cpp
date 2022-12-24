@@ -1,4 +1,4 @@
-// Priority queue implementation by flattening a binary tree. 
+// Priority queue (max heap) implementation by flattening a binary tree. 
 struct binary_heap {
    int* arr;
    int pos;
