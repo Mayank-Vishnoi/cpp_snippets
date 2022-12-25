@@ -1,54 +1,79 @@
-// Remember you can replace sum with any associative operation and single elements with any struct!
-template<class T> struct segtree {
+struct item {
+   // define the element for segtree
+};
+
+struct segtree {
    int size;
-   vector<T> sums;
+   item neutral;
+   vector<item> values;
 
    void init (int n) {
+      // set identity element
       size = 1;
       while (size < n) size *= 2;
-      sums.assign(2 * size, (T)0); // complete binary tree with each layer representing non-intersecting distribution of segments
+      values.assign(2 * size, neutral); 
    }
 
-   // node = x, borders of the segment = [lx, rx - 1]
+   item merge (item a, item b) {
+      // define associative operation
+   } 
+
+   item single (int v) {
+      // return item for a single element
+   }
+
+   void build (vector<int> &a, int x, int lx, int rx) {
+      if (rx - lx == 1) {
+         if (lx < (int)a.size()) {
+            values[x] = single(a[lx]); 
+            return;
+         }
+      }
+      int m = (lx + rx) / 2;
+      build(a, 2 * x + 1, lx, m);
+      build(a, 2 * x + 2, m, rx);
+      values[x] = values[2 * x + 1] + values[2 * x + 2];
+   }
+
+   // builds the segtree in O(n)
+   void build (vector<int> &a) {
+      build(a, 0, 0, size);
+   }
+
    void set (int i, int v, int x, int lx, int rx) {
       if (rx - lx == 1) {
-         // leaf node
-         sums[x] = v;
+         values[x] = single(v);
          return;
       }
-      int m = lx + (rx - lx) / 2;
+      int m = (lx + rx) / 2;
       if (i < m) {
-         // left subtree
          set(i, v, 2 * x + 1, lx, m);
       } else {
-         // right subtree
          set(i, v, 2 * x + 2, m, rx);
       }
-      // recalculate the sum for this node
-      sums[x] = sums[2 * x + 1] + sums[2 * x + 2];
+      values[x] = merge(values[2 * x + 1], values[2 * x + 2]);
    }
 
+   // set a[i] = v; 
    void set (int i, int v) {
-      // starting from the root
       set(i, v, 0, 0, size); 
    }
 
-   T sum (int l, int r, int x, int lx, int rx) {
+   item calc (int l, int r, int x, int lx, int rx) {
       if (lx >= r || l >= rx) {
-         // segment does not intersect with the query
-         return 0;
+         return neutral;
       }   
       if (lx >= l && rx <= r) {
-         // whole segment contributes
-         return sums[x];
+         return values[x];
       }
-      int m = lx + (rx - lx) / 2;
-      T s1 = sum(l, r, 2 * x + 1, lx, m); // calculate from left subtree
-      T s2 = sum(l, r, 2 * x + 2, m, rx); // calculate from right subtree
-      return s1 + s2;
+      int m = (lx + rx) / 2;
+      item _1 = calc(l, r, 2 * x + 1, lx, m);
+      item _2 = calc(l, r, 2 * x + 2, m, rx); 
+      return merge(_1, _2);
    }
 
-   T sum (int l, int r) {
-      return sum(l, r, 0, 0, size);
+   // return value for segment [l, r)
+   item calc (int l, int r) {
+      return calc(l, r, 0, 0, size);
    }
 }; 
