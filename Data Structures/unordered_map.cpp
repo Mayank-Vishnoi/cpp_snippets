@@ -1,4 +1,4 @@
-// A prime number bigger than max number of entries in map. 
+// M is preferably a prime, ~N/5 for seperate chaining,  ~2*N for linear probing.
 const int M = 97;
 
 // Polynomial hash
