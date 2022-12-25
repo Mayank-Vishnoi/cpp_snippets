@@ -32,7 +32,7 @@ template<class item> struct segtree {
       int m = (lx + rx) / 2;
       build(a, 2 * x + 1, lx, m);
       build(a, 2 * x + 2, m, rx);
-      values[x] = values[2 * x + 1] + values[2 * x + 2];
+      values[x] = merge(values[2 * x + 1], values[2 * x + 2]);
    }
 
    // builds the segtree in O(n)
