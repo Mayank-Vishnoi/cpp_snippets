@@ -1,8 +1,8 @@
-struct item {
+struct elem {
    // define the element for segtree
 };
 
-struct segtree {
+template<class item> struct segtree {
    int size;
    item neutral;
    vector<item> values;
@@ -77,3 +77,6 @@ struct segtree {
       return calc(l, r, 0, 0, size);
    }
 }; 
+
+// segtree<elem> st;
+// can't declare constructor for elem without deleting the default one, so work without that
