@@ -1,4 +1,3 @@
-// A binary search tree implementation. 
 // O(logN) average search time, but the worst is O(N) as the tree is not balanced
 // O(d) space if implemented recursively but we are using O(1) iterative.
 struct node {
