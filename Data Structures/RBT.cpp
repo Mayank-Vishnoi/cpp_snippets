@@ -1,6 +1,4 @@
-// Using red-black trees
 // Erase has not been implemented yet
-// Preorder postorder inorder validate functions same as in set
 
 #define RED true
 #define BLACK false
