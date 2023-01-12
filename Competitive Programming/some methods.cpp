@@ -1612,6 +1612,8 @@ set.lower_bound(value) // O(logn)
 multiset.count() // Logarithmic in size and linear in the number of matches.
 set.count() // Logarithmic in size
 multiset.find() // Logarithmic in size
+set.contains() // since C++20
+
 
 
 sqrtl() // to compute square root of a long long number
@@ -1619,3 +1621,93 @@ sqrtl() // to compute square root of a long long number
 	
 // Accessing a map index can result in insertion. Thus accessing map index too much can result in MLE and TLE.
 int a = mp[2]; // here 2 gets inserted in mp if it is not already there.
+
+
+
+// Syntax for any random iterator (for example, with a vector and not a set), here end:
+while (stk.size() >= 3 && stk[stk.size() - 2] + stk[stk.size() - 1] > stk[stk.size() - 3]) {
+  stk.pop_back();
+}
+// A cleaner way of writing the same thing is this:
+while (stk.size() >= 3 && end(stk)[-2] + end(stk)[-1] > end(stk)[-3]) {
+  stk.pop_back();
+}
+
+
+// Free functions
+size(v) // unsigned, bad ans on a.size() - 1 when a is empty
+ssizev) // signed
+begin(v), end(v), rbegin(v), rend(v)
+empty(v)
+
+
+// Variable declaration in loops/conditions after C++17
+for (int i = -1; auto x : a) {
+  i++;
+  // do something
+}
+
+if (auto x = construct_object(); x.good() && !x.bad()) {
+  // do something
+}
+
+
+// temporary container in for loop
+for (auto x : "LRDU"s) { /* do something */ }
+// Note that the s at the end makes it a string literal which is why it works, and const char* doesn't work because there is a \0 at the end of the literal.
+
+
+// Header for mathematical constants in C++20 
+#include <numbers>
+// https://en.cppreference.com/w/cpp/header/numbers
+
+
+midpoint(a, b) // C++20, for avoiding underflow overflow issues
+
+
+a.push_back({1, 2});
+a.emplace_back(1, 2);
+emplace_front and emplace // do the same thing for their other counterparts (for example, in a deque, queue or priority_queue)
+
+
+// C++ 20
+bool res = str.starts_with("abc"s);
+basic_string::ends_with()
+
+string::contains() // check substring containment, C++ 23
+
+
+// Ranges in C++ 20
+namespace R = std::ranges;
+namespace V = std::ranges::views;
+
+//  You take integers in [1,6), multiply them by 2, reverse them, and take the first 3. 
+int main() {
+    for (auto x : V::iota(1, 6) | V::transform([](int x) { return x * 2; }) | V::reverse | V::take(3))
+        std::cout << x << '\n';
+}
+// The | operator is defined for ranges and an operation on ranges that returns a range. 
+
+// If r is a range, then for most STL containers, like std::vector, you can do something like
+std::vector<int> a(r.begin(), r.end())
+
+
+std::string s = "1010101010";
+for (const auto word : V::split(s, '1')) {
+	std::cout << std::string_view{begin(word), end(word)} << ' '; // 0 0 0 0 0
+        // std::cout << word << ' '; won't work
+}
+
+#include <ranges>
+#include <string_view>
+#include <iomanip>
+
+int main() {
+    constexpr std::string_view words{"Hello^_^C++^_^20^_^!"};
+    constexpr std::string_view delim{"^_^"};
+    for (const auto word : std::views::split(words, delim))
+        std::cout << std::quoted(std::string_view{word.begin(), word.end()}) << ' ';
+}
+// Output: "Hello" "C++" "20" "!"
+
+
