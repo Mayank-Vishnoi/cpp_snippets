@@ -1606,3 +1606,16 @@ std::partial_sum(v.begin(), v.end(), v.begin(), std::multiplies<int>()); // writ
 https://en.cppreference.com/w/cpp/algorithm/partial_sum
 
 
+lower_bound(set.begin(), set.end(), value) // O(n)
+set.lower_bound(value) // O(logn)
+	
+multiset.count() // Logarithmic in size and linear in the number of matches.
+set.count() // Logarithmic in size
+multiset.find() // Logarithmic in size
+
+
+sqrtl() // to compute square root of a long long number
+	
+	
+// Accessing a map index can result in insertion. Thus accessing map index too much can result in MLE and TLE.
+int a = mp[2]; // here 2 gets inserted in mp if it is not already there.
