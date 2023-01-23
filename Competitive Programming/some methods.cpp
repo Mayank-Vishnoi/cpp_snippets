@@ -1564,8 +1564,10 @@ b = 4, d = 3, p = 2, q = 1;
 std::cout << s.b << ' ' << s.d << ' ' << s.p << ' ' << s.q << '\n'; // [4, 3, 2, 1]
 
 
-// Compilation flags
--Wno-unused-result -Wshadow -Wall -D_GLIBCXX_DEBUG -DLOCAL -fsanitize=address -fsanitize=undefined 
+// Compilation flags:
+g++ -Wall -Wextra -O2 -std=c++17 -Wshadow -Wconversion -D_GLIBCXX_CONCEPT_CHECKS -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC -DLOCAL
+// if clang, add:
+-fsanitize=address -fsanitize=undefined -ftrapv -fno-sanitize-recover -fstack-protector
 
 if (cnt[0] == 0) printf("-1\n"), exit(0); // control flow
  
