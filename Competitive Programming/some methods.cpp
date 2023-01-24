@@ -1567,7 +1567,7 @@ std::cout << s.b << ' ' << s.d << ' ' << s.p << ' ' << s.q << '\n'; // [4, 3, 2,
 // Compilation flags:
 g++ -Wall -Wextra -O2 -std=c++17 -Wshadow -Wconversion -D_GLIBCXX_CONCEPT_CHECKS -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC -DLOCAL
 // if clang, add:
--fsanitize=address -fsanitize=undefined -ftrapv -fno-sanitize-recover -fstack-protector
+-fsanitize=address -fsanitize=undefined -ftrapv -fno-sanitize-recover -fstack-protector -fno-omit-frame-pointer
 
 if (cnt[0] == 0) printf("-1\n"), exit(0); // control flow
  
