@@ -1,3 +1,4 @@
+// Benjamin Qi template /o\
 const int MOD = 1e9 + 7;
 struct mi {
    int v; explicit operator int() const { return v; }
