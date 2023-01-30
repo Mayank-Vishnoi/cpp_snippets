@@ -1720,3 +1720,7 @@ int main(int argc, char** argv) { // command-line arguments
     }
 }
 
+
+auto it = s.upper_bound(x); // multiset<int>::iterator
+auto d = distance(s.begin(), it); // int
+
