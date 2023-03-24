@@ -1724,3 +1724,23 @@ int main(int argc, char** argv) { // command-line arguments
 auto it = s.upper_bound(x); // multiset<int>::iterator
 auto d = distance(s.begin(), it); // int
 
+
+// Array with negative indices: implementation
+
+const int M = 10; // I want indices from -M to +M
+int _a[2*M+1]; // underlying array of size 2*M+1
+int* a = _a + M; // array that has index [0] in the middle of the big array
+int main() {
+	a[-10] = a[1] = 7;
+	cout << a[-10] << " " << a[3] << " " << a[10] << endl;
+}
+
+const int MAX_N = 2e5 + 20;
+const int ZERO = 1e5 + 5;
+int dp_ [MAX_N];
+
+int& dp (int idx) { // the '&' is very important!
+  return dp_[ZERO + idx];
+}
+
+// tricks for multidimensional negative indices too, look later~
