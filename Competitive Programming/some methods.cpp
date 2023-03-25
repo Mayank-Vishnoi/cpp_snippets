@@ -1744,3 +1744,16 @@ int& dp (int idx) { // the '&' is very important!
 }
 
 // tricks for multidimensional negative indices too, look later~
+
+
+// dynamic sized array
+int taglia(int N, int V[]) {
+}
+// main
+int * v = (int*)calloc(n, sizeof(int));
+for (int i = 0; i < n; i++) {
+   cin >> v[i];
+}
+int ans = taglia(n, v);
+
+
