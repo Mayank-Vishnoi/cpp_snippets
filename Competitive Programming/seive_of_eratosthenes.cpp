@@ -1,5 +1,6 @@
+// you can use bitset<> to save memory
 const int N = 1e6;
-vector<bool> is_prime;
+vector<bool> is_prime; 
 vector<int> primes;
 
 void sieve () {
