@@ -1,23 +1,28 @@
+using ll = long long;
 const int N = 2e6 + 1, mod = 1e9 + 7;
 int fact[N], invFact[N];
 
-ll binpow(ll x, ll n, ll m) {
-   x %= m;  
-   ll res = 1;
-   while (n > 0) {
-      if (n % 2 == 1)  
-         res = res * x % m;
-      x = x * x % m;
+int binpow (int x, int n) {
+   x %= mod;  
+   int res = 1;
+   while (n) {
+      if (n % 2)  
+         res = ((ll)res * x) % mod;
+      x = ((ll)x * x) % mod;
       n /= 2;  
    }
    return res;
+}
+
+int inv (int x) {
+   return binpow(x, mod - 2, mod);
 }
 
 void precompute () {
    fact[0] = invFact[0] = 1;
    for (int i = 1; i < (int)N; i++) {
       fact[i] = (int)((i * (ll)fact[i - 1]) % mod);
-      invFact[i] = (int)binpow(fact[i], mod - 2, mod);
+      invFact[i] = inv(fact[i], mod - 2, mod);
    }
 }
 
