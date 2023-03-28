@@ -1757,3 +1757,5 @@ for (int i = 0; i < n; i++) {
 int ans = taglia(n, v);
 
 
+// check if all elements of the array or vector are same, in case of array we use std::all_of(a, a + n, func());
+cout << ((all_of(all(a), [&] (int x) { return x == a[0]; })) ? cnt : -1);
