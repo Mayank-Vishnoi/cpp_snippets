@@ -1,21 +1,15 @@
-// you can use bitset<> to save memory
 const int N = 1e6;
-vector<bool> is_prime; 
-vector<int> primes;
+bitset<N + 1> p; 
+vector<int> pr;
 
 void sieve () {
-  is_prime.assign(N + 1, true);
-  is_prime[0] = is_prime[1] = false;
-  for (int i = 2; i * i <= N; i++) {
-     if (is_prime[i]) {
-        for (int p = i * i; p <= N; p += i) {
-           is_prime[p] = false;
-        }
-     }
-  }
-  for (int i = 1; i <= N; i++) {
-    if (is_prime[i]) {
-      primes.push_back(i);
-    }
-  }
+   p.flip();
+   p[0] = p[1] = 0;
+   for (int i = 2; i * i <= N; i++) 
+      if (p[i]) 
+         for (int j = i * i; j <= N; j += i) 
+            p[j] = 0;
+   for (int i = 1; i <= N; i++) 
+      if (p[i]) 
+         pr.push_back(i);
 }
