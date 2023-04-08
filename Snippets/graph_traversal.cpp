@@ -25,3 +25,36 @@ while (!q.empty()) {
       }
    }
 }
+
+int dx[]{0, 0, 1, -1}, dy[]{1, -1, 0, 0};
+
+// bfs on grid
+vector<vector<int>> dist(n, vector<int>(m, -1));
+queue<pair<int, int>> q;
+q.push({0, 0});
+dist[0][0] = 0;
+while (!q.empty()) {
+   auto [x, y] = q.front();
+   q.pop();
+   for (int i = 0; i < 4; i++) {
+      int nx = x + dx[i], ny = y + dy[i];
+      if (nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
+      if (dist[nx][ny] != -1 || g[nx][ny] != 1) continue;
+      dist[nx][ny] = dist[x][y] + 1;
+      q.push({nx, ny});
+   }
+}
+
+// flood fill on grid
+vector<vector<int>> vis(n, vector<int>(m, 0));
+function<void(int, int)> dfs = [&](int x, int y) {
+   vis[x][y] = 1;
+   cout << x << ' ' << y << '\n';
+   for (int i = 0; i < 4; i++) {
+      int nx = x + dx[i], ny = y + dy[i];
+      if (nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
+      if (vis[nx][ny] || g[nx][ny] != 1) continue;
+      dfs(nx, ny);
+   }
+};
+dfs(0, 0);
