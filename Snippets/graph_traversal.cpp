@@ -30,6 +30,7 @@ int dx[]{0, 0, 1, -1}, dy[]{1, -1, 0, 0};
 
 // bfs on grid
 vector<vector<int>> dist(n, vector<int>(m, -1));
+// maintain a parent array to trace back the shortest path found
 queue<pair<int, int>> q;
 q.push({0, 0});
 dist[0][0] = 0;
