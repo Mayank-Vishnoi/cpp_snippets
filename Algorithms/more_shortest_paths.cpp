@@ -1,6 +1,8 @@
+const int INF = 1e8;
+
 // Read more on https://cp-algorithms.com/graph/finding-negative-cycle-in-graph.html
 vector<vector<int>> floyd_marshall (vector<vector<int>>& edges) {    
-    vector<vector<int>> d(n, vector<int>(n, 1e8));
+    vector<vector<int>> d(n, vector<int>(n, INF));
     for (int i = 0; i < n; i++) d[i][i] = 0;
     for (auto &[u, v, w]: edges) {
       d[u][v] = w;
@@ -21,7 +23,7 @@ if (d[i][k] < INF && d[k][j] < INF)
 
 
 vector<int> bellman_ford (int src) {
-    vector<int> dist(n, 1e8);
+    vector<int> dist(n, INF);
     dist[src] = 0;
     for (int i = 0; i <= k; i++) {
       vector<int> new_dist(dist);
