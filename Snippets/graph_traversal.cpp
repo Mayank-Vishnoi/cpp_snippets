@@ -29,8 +29,9 @@ while (!q.empty()) {
 int dx[]{0, 0, 1, -1}, dy[]{1, -1, 0, 0};
 
 // bfs on grid
-vector<vector<int>> dist(n, vector<int>(m, -1));
 // maintain a parent array to trace back the shortest path found
+// use a deque in the case where weights can only be 0/1 
+vector<vector<int>> dist(n, vector<int>(m, -1));
 queue<pair<int, int>> q;
 q.push({0, 0});
 dist[0][0] = 0;
@@ -47,6 +48,7 @@ while (!q.empty()) {
 }
 
 // flood fill on grid
+// use a component array and additional parameter to find connected regions
 vector<vector<int>> vis(n, vector<int>(m, 0));
 function<void(int, int)> dfs = [&](int x, int y) {
    vis[x][y] = 1;
