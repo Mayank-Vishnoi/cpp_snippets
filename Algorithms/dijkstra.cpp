@@ -69,3 +69,23 @@ void solve () {
    }
    cout << endl;
 } 
+
+// using vector<pair<int, int>> adj[n + 1];
+template <typename T> vector<T> dijkstra(int s, int n, vector<pair<int, int>> *adj) {
+   vector<T> d(n, numeric_limits<T>::max());
+   d[s] = 0;
+   priority_queue<pair<T, int>, vector<pair<T, int>>, greater<pair<T, int>>> pq;
+   pq.push({0, s});
+   while (!pq.empty()) {
+      auto [dist, u] = pq.top();
+      pq.pop();
+      if (dist > d[u]) continue;
+      for (auto [v, w] : adj[u]) {
+         if (d[v] > d[u] + w) {
+            d[v] = d[u] + w;
+            pq.push({d[v], v});
+         }
+      }
+   }
+   return d;
+};
