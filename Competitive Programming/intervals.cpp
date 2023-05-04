@@ -27,3 +27,22 @@ void removeInterval(set<pair<int, int>>& is, int L, int R) {
 	else (int&)it->second = L;
 	if (R != r2) is.emplace(R, r2);
 }
+
+
+// Alternatively
+typedef std::map< int, int > interval_set;
+typedef std::pair< const int, int > interval; // {one greater than top, bottom}
+
+bool split_interval( interval_set & s, int p ) {
+    interval_set::iterator it = s.upper_bound( p );
+    if ( p < it->second ) return false; // Interval doesn't exist. Bail out.
+
+    s.insert( interval{ p + 1, it->second } ); // Insert a new lower-part interval.
+    it->second = p; // Cut the lower part from the existing interval.
+    return true;
+}
+
+intervals[ 26 ] = 14; // Insert interval [14, 25]
+
+intervals[ 21 ] = 14; // Insert interval [14, 20]
+intervals[ 26 ] = 21; // Cut [14, 25] down to [21, 25]
