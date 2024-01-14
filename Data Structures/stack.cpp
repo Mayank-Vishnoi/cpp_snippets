@@ -115,3 +115,60 @@ struct stack {
       return (cur_size == 0);
    }
 };
+
+class MinStack {
+private:
+    struct Node {
+        int val;
+        int min;
+        Node* next;
+        
+        Node(int value, int minimum, Node* nextNode)
+            : val(value), min(minimum), next(nextNode) {}
+    };
+
+    Node* head;
+
+public:
+    MinStack() : head(nullptr) {}
+
+    void push(int x) {
+        if (head == nullptr) {
+            head = new Node(x, x, nullptr);
+        } else {
+            head = new Node(x, std::min(x, head->min), head);
+        }
+    }
+
+    void pop() {
+        if (head != nullptr) {
+            Node* temp = head;
+            head = head->next;
+            delete temp;
+        }
+    }
+
+    int top() {
+        if (head != nullptr) {
+            return head->val;
+        }
+        // Handle error, throw exception, or return a default value
+        return INT_MIN;
+    }
+
+    int getMin() {
+        if (head != nullptr) {
+            return head->min;
+        }
+        // Handle error, throw exception, or return a default value
+        return INT_MIN;
+    }
+
+    ~MinStack() {
+        while (head != nullptr) {
+            Node* temp = head;
+            head = head->next;
+            delete temp;
+        }
+    }
+};
