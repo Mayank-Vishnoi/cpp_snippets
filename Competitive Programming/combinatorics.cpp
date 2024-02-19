@@ -32,7 +32,7 @@ int choose (int x, int y) {
 }
 
 
-// for smaller n, can compute nCr directly 
+// for smaller n or for cases where modulo is not invertible, we can compute nCr directly 
 vector<vector<int>> choose(n + 1, vector<int>(n + 1);  
 for (int i = 0; i <= n; i++) {
     for (int j = 0; j <= i; j++) {
