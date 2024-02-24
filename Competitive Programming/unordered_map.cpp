@@ -14,7 +14,7 @@ struct custom_hash {
 unordered_map<int, int, custom_hash> mp;
 
 
-// for unordered_map<pair<int, int>, int>
+// for unordered_map<pair<int, int>, int> or unordered_set<pair<int, int>> 
 struct HASH {
    size_t operator() (const pair<int,int> &x) const {
       return (size_t) x.first * 37U + (size_t) x.second;
